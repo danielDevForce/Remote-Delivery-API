@@ -116,7 +116,7 @@ Version: 1.0.0
         public  $CVV;
         public  $token;
 
-        function __construct($number, $expireMonth, $expireYear, $holderId, $holderName, $billingAddress, $billingPostalCode, $CVV, $token) {
+        public function __construct($number, $expireMonth, $expireYear, $CVV, $token, $holderId="", $holderName="", $billingAddress="", $billingPostalCode="") {
             $this->number            = $number;
             $this->expireMonth       = $expireMonth;
             $this->expireYear        = $expireYear;
@@ -127,8 +127,8 @@ Version: 1.0.0
             $this->CVV               = $CVV;
             $this->token             = $token;
           }
-          public function __toString()
-          {
+        public function __toString()
+            {
               $str = "number:" . $this->number 
               . "\nexpireMonth:" . $this->expireMonth 
               . "\nexpireYear:" . $this->expireYear
@@ -137,7 +137,8 @@ Version: 1.0.0
               empty($this->holderName) ? "" : $str.="\nholderName:" . $this->holderName;
               empty($this->billingAddress) ? "" : $str.="\nbillingAddress:" . $this->billingAddress ;
               empty($this->billingPostalCode) ?  "" : $str.="\nbillingPostalCode:" . $this->billingPostalCode  ;
-              empty($this->token) ? $str.="\ntoken:" . $this->token  : "";
+              empty($this->token) ? "" : $str.="\ntoken:" . $this->token ;
+              echo $this->token ;
               return  $str;
 
           }
@@ -145,5 +146,32 @@ Version: 1.0.0
     class group{
         public  $id;
         public  $name;
+
+        public function __construct($id, $name){
+            $this->id = $id;
+            $this->name = $name;
+        }
     }
-    
+    class test{
+        public  $a1;
+        public  $a2;
+        public $a3;
+        public function __construct($a1, $a3='q',$a2 = 'a')
+        {
+            $this->a1=$a1;
+            $this->a2=$a2;
+            $this->a3=$a3;
+        }
+        public function __toString()
+        {
+            return a1 . "+" .a2;
+        }
+    }
+
+
+    $card = new CreditCard(1,2,3,4,5);
+    var_dump($card);
+    echo $card;
+    //echo($a);
+    //var_dump($a);
+    //echo $card;
