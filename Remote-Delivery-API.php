@@ -6,6 +6,9 @@ Description: Remote Delivery API
 Author: Devforce
 Version: 1.0.0
 */
+require __DIR__ . '/vendor/autoload.php';
+use Automattic\WooCommerce\HttpClient\HttpClientException;
+use Automattic\WooCommerce\Client;
 
     class RemoteOrder {
         /* Member variables */
@@ -39,7 +42,7 @@ Version: 1.0.0
         public  $phone;
         public  $fax;
 
-        function __construct($id, $firstName, $lastName, $email, $phone, $fax) {
+        function __construct($id, $firstName, $lastName, $phone, $email="", $fax="") {
             $this->id        = $id;
             $this->firstName = $firstName;
             $this->lastName  = $lastName;
@@ -60,7 +63,42 @@ Version: 1.0.0
         }
 
     }  
+    class item{
+        public $id;
+        public $desc;
+        public $group;
+        public $price;
+        public $variations = array();
+        public $status;
+        public $comment;
+        public $count;
+        public $discountable;
+        public $type;
+        public $discountAmountRuleType;
+        public $discountAmount;
 
+        function __construct($id, $desc, $group, $price, $variations, $status, $comment, $count = 0, $discountable = false, $type=0, $discountAmountRuleType = 0, $discountAmount=0) {
+            $this->id           = $id;
+            $this->desc         = $desc;
+            $this->group        = $group;
+            $this->price        = $price;
+            $this->variations   = $variations;
+            $this->status       = $status;
+            $this->comment      =$comment;
+            $this->count        = $count;
+            $this->discountable = $discountable;
+            $this->type         = $type;
+            $this->discountAmountRuleType = $discountAmountRuleType;
+            $this->discountAmount = $discountAmount;
+          }
+
+
+
+
+    }
+    class Variation{
+
+    }
     class Address{
         public  $country;
         public  $city;
@@ -73,6 +111,20 @@ Version: 1.0.0
         public  $lat;
         public  $lng;
         public  $postalCode;
+
+        function __construct($city, $street, $number, $apt, $floor, $entrance, $postalCode=0, $country = "IL", $lat="", $lng="") {
+            $this->city       = $city;
+            $this->street     = $street;
+            $this->number     = $number;
+            $this->apt        = $apt;
+            $this->floor      = $floor;
+            $this->entrance   = $entrance;
+            $this->country    =$country;
+            $this->postalCode = $postalCode;
+            $this->lat        = $lat;
+            $this->lng        = $lng;
+
+          }
     }
 
     abstract class PaymentMethod{
@@ -93,7 +145,7 @@ Version: 1.0.0
         public CreditCard $card;
 
         function __construct($paymentMethod, $amount, CreditCard $card) {
-            $this->paymentMethod   :: $paymentMethod;
+            $this->paymentMethod =    PaymentMethod:: $paymentMethod;
             $this->amount          = $amount;
             $this->card            = $card;
           }
@@ -170,8 +222,29 @@ Version: 1.0.0
 
 
     $card = new CreditCard(1,2,3,4,5);
-    var_dump($card);
-    echo $card;
+    //$q = new Payment(cash,1,$card);
+    //var_dump($q);
+    //echo $card;
     //echo($a);
     //var_dump($a);
     //echo $card;
+   
+
+$woocommerce = new Client(
+    'https://freshit-order.ussl.blog', 
+    'ck_d2bc995ba20f60ebaf241bac002e2699bb90bff7', 
+    'cs_636f8e9f01a63eb072b768c73f92256d3f8ba56d',
+    [
+        'version' => 'wc/v3',
+        'ssl_verify' => false,
+    ]
+    
+);
+$woocommerce;
+print_r($woocommerce);
+$results = $woocommerce->get('orders');
+print_r($results);
+//print_r($woocommerce->get('orders'));
+
+
+ 
