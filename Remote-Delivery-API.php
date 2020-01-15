@@ -14,7 +14,7 @@ use Automattic\WooCommerce\Client;
         /* Member variables */
         public  $id;
         public  $shareToken;
-        //add items
+        public  $items;
         //add charges
         public  $comment;
         public  $created;
@@ -23,14 +23,22 @@ use Automattic\WooCommerce\Client;
         public  $formatCreatedDate;      //// formatted yyyy-MM-dd HH:mm:ss
         public  $formatDeliveryDate;     //// formatted yyyy-MM-dd HH:mm:ss
         public  $status;
-        //add contact
+        public  Contact $contact;
         public  $deliveryType;          //0-delivery 1-takeout
         public  $servingType;           //(0- SIT, 1-TA, 2-DELIVERY) not mandatory, default value is 2-DELIVERY
-        //add Address
+        public  Address $address;
         //add payments
-        public  $acceptableOnPayFail;
 
-
+        function __construct($id, $shareToken, $items, $formatCreatedDate, $formatDeliveryDate , $status, Contact $contact, Address $address, $deliveryType = 0, $servingType = 2 ) {
+            $this->id           = $id;
+            $this->shareToken   = $shareToken;
+            $this->items        = $items;
+            $this->formatCreatedDate  = $formatCreatedDate;
+            $this->formatDeliveryDate = $formatDeliveryDate;
+            $this->status       = $status;
+            $this->contact = $contact;
+            $this->address = $address;
+          }
     }
 
     class Contact{
@@ -42,8 +50,8 @@ use Automattic\WooCommerce\Client;
         public  $phone;
         public  $fax;
 
-        function __construct($id, $firstName, $lastName, $phone, $email="", $fax="") {
-            $this->id        = $id;
+        function __construct($firstName, $lastName, $phone, $email="", $fax="") {
+            //$this->id        = $id;
             $this->firstName = $firstName;
             $this->lastName  = $lastName;
             $this->email     = $email;
@@ -63,28 +71,26 @@ use Automattic\WooCommerce\Client;
         }
 
     }  
-    class item{
+    class Item{
         public $id;
         public $desc;
-        public $group;
+        //public $group;
         public $price;
-        public $variations = array();
+        public Variation $variations;
         public $status;
-        public $comment;
+        //public $comment;
         public $count;
         public $discountable;
         public $type;
         public $discountAmountRuleType;
         public $discountAmount;
 
-        function __construct($id, $desc, $group, $price, $variations, $status, $comment, $count = 0, $discountable = false, $type=0, $discountAmountRuleType = 0, $discountAmount=0) {
+        function __construct($id, $desc, $price, $variations, $status, $count = 0, $discountable = false, $type=0, $discountAmountRuleType = 0, $discountAmount=0) {
             $this->id           = $id;
             $this->desc         = $desc;
-            $this->group        = $group;
             $this->price        = $price;
             $this->variations   = $variations;
             $this->status       = $status;
-            $this->comment      =$comment;
             $this->count        = $count;
             $this->discountable = $discountable;
             $this->type         = $type;
@@ -92,33 +98,42 @@ use Automattic\WooCommerce\Client;
             $this->discountAmount = $discountAmount;
           }
 
-
+          
 
 
     }
     class Variation{
+        public  $items = array();
+        public $level;
+        public $maxNumAllowed;
 
+        function __construct($items = array(), $level="", $maxNumAllowed=1){
+            $this->items = $items;
+            $this->level = $level;
+            $this->maxNumAllowed = $maxNumAllowed;
+        }
+        function add_item_to_variation($item){
+            array_push($this->items, $item);
+        }
     }
     class Address{
         public  $country;
         public  $city;
         public  $street;
-        public  $number;
         public  $apt;
-        public  $floor;
         public  $entrance;
         public  $comment;
         public  $lat;
         public  $lng;
         public  $postalCode;
 
-        function __construct($city, $street, $number, $apt, $floor, $entrance, $postalCode=0, $country = "IL", $lat="", $lng="") {
+        function __construct($city, $street, $apt, $postalCode=0, $country = "IL", $lat="", $lng="") {
             $this->city       = $city;
             $this->street     = $street;
-            $this->number     = $number;
+           // $this->number     = $number;
             $this->apt        = $apt;
-            $this->floor      = $floor;
-            $this->entrance   = $entrance;
+            //$this->floor      = $floor;
+            //$this->entrance   = $entrance;
             $this->country    =$country;
             $this->postalCode = $postalCode;
             $this->lat        = $lat;
@@ -204,47 +219,144 @@ use Automattic\WooCommerce\Client;
             $this->name = $name;
         }
     }
-    class test{
-        public  $a1;
-        public  $a2;
-        public $a3;
-        public function __construct($a1, $a3='q',$a2 = 'a')
-        {
-            $this->a1=$a1;
-            $this->a2=$a2;
-            $this->a3=$a3;
-        }
-        public function __toString()
-        {
-            return a1 . "+" .a2;
-        }
-    }
+/** 
+ * connects to the woocommece api, returns a woocommerce object
+ * 
+ * @param $url - the sites url
+ * @param $publicKey - public key of woocommerce api
+ * @param $secretKey - secret key of woocommerce api
+ */
+function connect_to_woocommerce_api($url, $publicKey, $secretKey ){
+    $woocommerce = new Client(
+        $url, 
+        $publicKey, 
+        $secretKey,
+        [
+            'version' => 'wc/v3',
+        ]
+        
+    );
+    return $woocommerce;
+}
 
 
-    $card = new CreditCard(1,2,3,4,5);
-    //$q = new Payment(cash,1,$card);
-    //var_dump($q);
-    //echo $card;
-    //echo($a);
-    //var_dump($a);
-    //echo $card;
-   
-
-$woocommerce = new Client(
-    'https://freshit-order.ussl.blog', 
-    'ck_d2bc995ba20f60ebaf241bac002e2699bb90bff7', 
-    'cs_636f8e9f01a63eb072b768c73f92256d3f8ba56d',
-    [
-        'version' => 'wc/v3',
-        'ssl_verify' => false,
-    ]
+/**
+ *  returns an address object from the order
+ * 
+ * @param array $order - the whole order gotten from woocommerce api
+ */
+function get_address_from_order($order) :Address
+{
+    empty($order[0]->shipping->first_name) ? $billing = $order[0]->billing : $billing = $order[0]->shipping;
     
-);
-$woocommerce;
-print_r($woocommerce);
-$results = $woocommerce->get('orders');
-print_r($results);
-//print_r($woocommerce->get('orders'));
+    $address = new Address($billing->city,$billing->address_1,empty($billing->address_2) ? "" : $billing->address_2,$billing->postcode);
+    //var_dump($address);
+    return $address;
 
+}
+/**
+ *  returns an contact object from the order
+ * 
+ * @param array $order - the whole order gotten from woocommerce api
+ */
+function get_contact_from_order($order) :Contact {
+    $billing = $order[0]->billing;
+    $contact = new Contact($billing->first_name, $billing->last_name, $billing->phone, $billing->email);
+    //var_dump($contact);
+    return $contact;
+}
 
+/**
+ *  returns an item object from the order
+ * 
+ * @param array $order - the whole order gotten from woocommerce api
+ */
+function get_items_from_order($order)// : Item
+ {
+    $level = 1;
+    $newItems = array();
+    $items = $order[0]->line_items;
+    foreach($items as $item){
+        $new_item = new Item(
+
+            $item->product_id,
+            $item->name,
+            $item->total,
+            get_variations_from_order($item->meta_data, $level),
+            0,
+            $item->quantity
+        );
+        array_push($newItems, $new_item);
+        $level++;
+    }
+    //print_r($newItems);
+    return $newItems;
+}
+/**
+ *  returns an contact object from the order
+ * 
+ * @param array $items - the items array from the order
+ * @param $level - level
+ */
+function get_variations_from_order($items, $level){// : Item
+    $variations = array();
+    $items = $items[0]->value;
+    foreach($items as $val){
+        $new_item = new Item(
+            0000,
+            $val->value,
+            $val->price,
+            new Variation(), //empty variation array
+            0, 
+            $val->quantity
+        );
+        array_push($variations, $new_item);
+    }
+    $variation = new Variation($variations, $level);
+
+   // print_r($variations);
+    return $variation;
+}
  
+function create_Remote_order($order, $shareToken) :RemoteOrder {
+    $main = $order[0];
+    $address = get_address_from_order($order);
+    $contact = get_contact_from_order($order);
+    $items = get_items_from_order($order);
+    $remoteOrder = new RemoteOrder(
+        $main->id,
+        $shareToken,
+        $items,
+        $main->date_created,
+        "",
+        0,
+        $contact,
+        $address,
+    );
+    return $remoteOrder;
+}
+
+
+
+$card = new CreditCard(1,2,3,4,5);
+//$p = new Payment(cash, 1, $card);
+//$q = new Payment(cash,1,$card);
+//var_dump($q);
+//echo $card;
+//echo($a);
+//var_dump($a);
+//echo $card;
+
+$woocommerce = connect_to_woocommerce_api('https://freshit-order.ussl.blog',  'ck_d2bc995ba20f60ebaf241bac002e2699bb90bff7', 'cs_636f8e9f01a63eb072b768c73f92256d3f8ba56d');
+$results = $woocommerce->get('orders');
+// $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+// fwrite($myfile, print_r($results, true));
+//get_address_from_order($results);
+//get_contact_from_order($results);
+//$a = get_items_from_order($results);
+$myObj= create_Remote_order($results, "1234");
+$myJSON = json_encode($myObj);
+$myfile = fopen("newfilew.txt", "w") or die("Unable to open file!");
+fwrite($myfile, $myJSON);
+
+
