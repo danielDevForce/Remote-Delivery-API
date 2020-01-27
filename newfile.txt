@@ -1,0 +1,849 @@
+Array
+(
+    [0] => stdClass Object
+        (
+            [id] => 494
+            [parent_id] => 0
+            [number] => 494
+            [order_key] => wc_order_R3Cj6XjRRBB43
+            [created_via] => checkout
+            [version] => 3.8.1
+            [status] => cancelled
+            [currency] => ILS
+            [date_created] => 2020-01-15T11:44:46
+            [date_created_gmt] => 2020-01-15T11:44:46
+            [date_modified] => 2020-01-15T11:45:27
+            [date_modified_gmt] => 2020-01-15T11:45:27
+            [discount_total] => 0.00
+            [discount_tax] => 0.00
+            [shipping_total] => 0.00
+            [shipping_tax] => 0.00
+            [cart_tax] => 0.00
+            [total] => 143.00
+            [total_tax] => 0.00
+            [prices_include_tax] => 
+            [customer_id] => 1
+            [customer_ip_address] => 147.234.129.218
+            [customer_user_agent] => Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36
+            [customer_note] => info
+            [billing] => stdClass Object
+                (
+                    [first_name] => בדיקה
+                    [last_name] => בדיקה
+                    [company] => 
+                    [address_1] => אהרון כצנלסון 24
+                    [address_2] => 24
+                    [city] => תל אביב
+                    [state] => 
+                    [postcode] => 0000
+                    [country] => IL
+                    [email] => daniel@devforce.co.il
+                    [phone] => 123123
+                )
+
+            [shipping] => stdClass Object
+                (
+                    [first_name] => 
+                    [last_name] => 
+                    [company] => 
+                    [address_1] => 
+                    [address_2] => 
+                    [city] => 
+                    [state] => 
+                    [postcode] => 
+                    [country] => 
+                )
+
+            [payment_method] => cod
+            [payment_method_title] => מזומן בעת מסירה
+            [transaction_id] => 
+            [date_paid] => 
+            [date_paid_gmt] => 
+            [date_completed] => 
+            [date_completed_gmt] => 
+            [cart_hash] => 10b19b570bc4a7b75bfd8d4119c5b7f6
+            [meta_data] => Array
+                (
+                    [0] => stdClass Object
+                        (
+                            [id] => 3565
+                            [key] => is_vat_exempt
+                            [value] => no
+                        )
+
+                )
+
+            [line_items] => Array
+                (
+                    [0] => stdClass Object
+                        (
+                            [id] => 7
+                            [name] => עסקית סלט 59 ש"ח
+                            [product_id] => 199
+                            [variation_id] => 201
+                            [quantity] => 1
+                            [tax_class] => 
+                            [subtotal] => 88.00
+                            [subtotal_tax] => 0.00
+                            [total] => 88.00
+                            [total_tax] => 0.00
+                            [taxes] => Array
+                                (
+                                )
+
+                            [meta_data] => Array
+                                (
+                                    [0] => stdClass Object
+                                        (
+                                            [id] => 72
+                                            [key] => _tmcartepo_data
+                                            [value] => Array
+                                                (
+                                                    [0] => stdClass Object
+                                                        (
+                                                            [mode] => builder
+                                                            [cssclass] => 
+                                                            [hidelabelincart] => 
+                                                            [hidevalueincart] => 
+                                                            [hidelabelinorder] => 
+                                                            [hidevalueinorder] => 
+                                                            [element] => stdClass Object
+                                                                (
+                                                                    [type] => checkbox
+                                                                    [rules_type] => stdClass Object
+                                                                        (
+                                                                            [סלמון בגריל- 11₪_0] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [חזה עוף צלוי- 10₪_1] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קציצות קינואה (3 יח&#039;) – 10₪_2] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קציצות סייטן (3 יח&#039;) – 10₪_3] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [ טופו אפוי בתנור – 9₪_4] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [טונה בהירה – 5₪_5] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [ממרח אבוקדו – 7₪_6] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [ביצה קשה – 4₪_7] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                        )
+
+                                                                    [_] => stdClass Object
+                                                                        (
+                                                                            [price_type] => 
+                                                                        )
+
+                                                                )
+
+                                                            [name] => 
+                                                            [value] => סלמון בגריל- 11₪
+                                                            [price] => 11
+                                                            [section] => 5e0898f9d1ae44.49273512
+                                                            [section_label] => 
+                                                            [percentcurrenttotal] => 0
+                                                            [currencies] => Array
+                                                                (
+                                                                )
+
+                                                            [price_per_currency] => stdClass Object
+                                                                (
+                                                                    [ILS] => 11
+                                                                )
+
+                                                            [quantity] => 1
+                                                            [multiple] => 1
+                                                            [key] => סלמון בגריל- 11₪_0
+                                                            [use_images] => 
+                                                            [use_colors] => 
+                                                            [changes_product_image] => 
+                                                            [imagesp] => 
+                                                            [images] => 
+                                                            [color] => 
+                                                        )
+
+                                                    [1] => stdClass Object
+                                                        (
+                                                            [mode] => builder
+                                                            [cssclass] => 
+                                                            [hidelabelincart] => 
+                                                            [hidevalueincart] => 
+                                                            [hidelabelinorder] => 
+                                                            [hidevalueinorder] => 
+                                                            [element] => stdClass Object
+                                                                (
+                                                                    [type] => checkbox
+                                                                    [rules_type] => stdClass Object
+                                                                        (
+                                                                            [כוסמין_0] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קמח מלא_1] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [ללא גלוטן_2] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                        )
+
+                                                                    [_] => stdClass Object
+                                                                        (
+                                                                            [price_type] => 
+                                                                        )
+
+                                                                )
+
+                                                            [name] => 
+                                                            [value] => קמח מלא
+                                                            [price] => 0
+                                                            [section] => 5e089ec03d0595.25610486
+                                                            [section_label] => 
+                                                            [percentcurrenttotal] => 0
+                                                            [currencies] => Array
+                                                                (
+                                                                )
+
+                                                            [price_per_currency] => stdClass Object
+                                                                (
+                                                                    [ILS] => 
+                                                                )
+
+                                                            [quantity] => 1
+                                                            [multiple] => 1
+                                                            [key] => קמח מלא_1
+                                                            [use_images] => 
+                                                            [use_colors] => 
+                                                            [changes_product_image] => 
+                                                            [imagesp] => 
+                                                            [images] => 
+                                                            [color] => 
+                                                        )
+
+                                                    [2] => stdClass Object
+                                                        (
+                                                            [mode] => builder
+                                                            [cssclass] => 
+                                                            [hidelabelincart] => 
+                                                            [hidevalueincart] => 
+                                                            [hidelabelinorder] => 
+                                                            [hidevalueinorder] => 
+                                                            [element] => stdClass Object
+                                                                (
+                                                                    [type] => checkbox
+                                                                    [rules_type] => stdClass Object
+                                                                        (
+                                                                            [מים נביעות 8₪_0] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סודה 8₪_1] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קולה 9₪_2] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קולה זירו 9₪_3] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אריזונה רימונים 9₪_4] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [ג&#039;ינסנג ודבש 9₪_5] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [פיקסי אננס 9₪_6] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [פיקסי תות ליים 9₪_7] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [תפוח למון גראס 9₪_8] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [גוארנה 9₪_9] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אלוורה אפרסק 9₪_10] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אלוורה ענבים 9₪_11] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סנפלגרינו מוגז לימונים 9₪_12] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סנפלגרינו מוגז תפוזים 9₪_13] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                        )
+
+                                                                    [_] => stdClass Object
+                                                                        (
+                                                                            [price_type] => 
+                                                                        )
+
+                                                                )
+
+                                                            [name] => 
+                                                            [value] => קולה 9₪
+                                                            [price] => 9
+                                                            [section] => 5e08afb28c7402.46721562
+                                                            [section_label] => 
+                                                            [percentcurrenttotal] => 0
+                                                            [currencies] => Array
+                                                                (
+                                                                )
+
+                                                            [price_per_currency] => stdClass Object
+                                                                (
+                                                                    [ILS] => 9
+                                                                )
+
+                                                            [quantity] => 1
+                                                            [multiple] => 1
+                                                            [key] => קולה 9₪_2
+                                                            [use_images] => 
+                                                            [use_colors] => 
+                                                            [changes_product_image] => 
+                                                            [imagesp] => 
+                                                            [images] => 
+                                                            [color] => 
+                                                        )
+
+                                                    [3] => stdClass Object
+                                                        (
+                                                            [mode] => builder
+                                                            [cssclass] => 
+                                                            [hidelabelincart] => 
+                                                            [hidevalueincart] => 
+                                                            [hidelabelinorder] => 
+                                                            [hidevalueinorder] => 
+                                                            [element] => stdClass Object
+                                                                (
+                                                                    [type] => checkbox
+                                                                    [rules_type] => stdClass Object
+                                                                        (
+                                                                            [מים נביעות 8₪_0] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סודה 8₪_1] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קולה 9₪_2] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קולה זירו 9₪_3] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אריזונה רימונים 9₪_4] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [ג&#039;ינסנג ודבש 9₪_5] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [פיקסי אננס 9₪_6] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [פיקסי תות ליים 9₪_7] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [תפוח למון גראס 9₪_8] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [גוארנה 9₪_9] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אלוורה אפרסק 9₪_10] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אלוורה ענבים 9₪_11] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סנפלגרינו מוגז לימונים 9₪_12] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סנפלגרינו מוגז תפוזים 9₪_13] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                        )
+
+                                                                    [_] => stdClass Object
+                                                                        (
+                                                                            [price_type] => 
+                                                                        )
+
+                                                                )
+
+                                                            [name] => 
+                                                            [value] => אריזונה רימונים 9₪
+                                                            [price] => 9
+                                                            [section] => 5e08afb28c7402.46721562
+                                                            [section_label] => 
+                                                            [percentcurrenttotal] => 0
+                                                            [currencies] => Array
+                                                                (
+                                                                )
+
+                                                            [price_per_currency] => stdClass Object
+                                                                (
+                                                                    [ILS] => 9
+                                                                )
+
+                                                            [quantity] => 1
+                                                            [multiple] => 1
+                                                            [key] => אריזונה רימונים 9₪_4
+                                                            [use_images] => 
+                                                            [use_colors] => 
+                                                            [changes_product_image] => 
+                                                            [imagesp] => 
+                                                            [images] => 
+                                                            [color] => 
+                                                        )
+
+                                                )
+
+                                        )
+
+                                    [1] => stdClass Object
+                                        (
+                                            [id] => 73
+                                            [key] => _tm_epo_product_original_price
+                                            [value] => Array
+                                                (
+                                                    [0] => 59
+                                                )
+
+                                        )
+
+                                    [2] => stdClass Object
+                                        (
+                                            [id] => 74
+                                            [key] => _tm_epo
+                                            [value] => Array
+                                                (
+                                                    [0] => 1
+                                                )
+
+                                        )
+
+                                    [3] => stdClass Object
+                                        (
+                                            [id] => 100000
+                                            [key] => 
+                                            [value] => סלמון בגריל- 11₪ ₪11.00
+                                        )
+
+                                    [4] => stdClass Object
+                                        (
+                                            [id] => 100001
+                                            [key] => 
+                                            [value] => קמח מלא
+                                        )
+
+                                    [5] => stdClass Object
+                                        (
+                                            [id] => 100002
+                                            [key] => 
+                                            [value] => קולה 9₪ ₪9.00, אריזונה רימונים 9₪ ₪9.00
+                                        )
+
+                                )
+
+                            [sku] => 
+                            [price] => 88
+                        )
+
+                    [1] => stdClass Object
+                        (
+                            [id] => 8
+                            [name] => אנטי אייג'ינג
+                            [product_id] => 163
+                            [variation_id] => 164
+                            [quantity] => 1
+                            [tax_class] => 
+                            [subtotal] => 55.00
+                            [subtotal_tax] => 0.00
+                            [total] => 55.00
+                            [total_tax] => 0.00
+                            [taxes] => Array
+                                (
+                                )
+
+                            [meta_data] => Array
+                                (
+                                    [0] => stdClass Object
+                                        (
+                                            [id] => 84
+                                            [key] => _tmcartepo_data
+                                            [value] => Array
+                                                (
+                                                    [0] => stdClass Object
+                                                        (
+                                                            [mode] => builder
+                                                            [cssclass] => 
+                                                            [hidelabelincart] => 
+                                                            [hidevalueincart] => 
+                                                            [hidelabelinorder] => 
+                                                            [hidevalueinorder] => 
+                                                            [element] => stdClass Object
+                                                                (
+                                                                    [type] => checkbox
+                                                                    [rules_type] => stdClass Object
+                                                                        (
+                                                                            [כוסמין_0] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קמח מלא_1] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [ללא גלוטן_2] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                        )
+
+                                                                    [_] => stdClass Object
+                                                                        (
+                                                                            [price_type] => 
+                                                                        )
+
+                                                                )
+
+                                                            [name] => 
+                                                            [value] => קמח מלא
+                                                            [price] => 0
+                                                            [section] => 5e089ec03d0595.25610486
+                                                            [section_label] => 
+                                                            [percentcurrenttotal] => 0
+                                                            [currencies] => Array
+                                                                (
+                                                                )
+
+                                                            [price_per_currency] => stdClass Object
+                                                                (
+                                                                    [ILS] => 
+                                                                )
+
+                                                            [quantity] => 1
+                                                            [multiple] => 1
+                                                            [key] => קמח מלא_1
+                                                            [use_images] => 
+                                                            [use_colors] => 
+                                                            [changes_product_image] => 
+                                                            [imagesp] => 
+                                                            [images] => 
+                                                            [color] => 
+                                                        )
+
+                                                    [1] => stdClass Object
+                                                        (
+                                                            [mode] => builder
+                                                            [cssclass] => 
+                                                            [hidelabelincart] => 
+                                                            [hidevalueincart] => 
+                                                            [hidelabelinorder] => 
+                                                            [hidevalueinorder] => 
+                                                            [element] => stdClass Object
+                                                                (
+                                                                    [type] => checkbox
+                                                                    [rules_type] => stdClass Object
+                                                                        (
+                                                                            [מים נביעות 8₪_0] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סודה 8₪_1] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קולה 9₪_2] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [קולה זירו 9₪_3] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אריזונה רימונים 9₪_4] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [ג&#039;ינסנג ודבש 9₪_5] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [פיקסי אננס 9₪_6] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [פיקסי תות ליים 9₪_7] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [תפוח למון גראס 9₪_8] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [גוארנה 9₪_9] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אלוורה אפרסק 9₪_10] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [אלוורה ענבים 9₪_11] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סנפלגרינו מוגז לימונים 9₪_12] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                            [סנפלגרינו מוגז תפוזים 9₪_13] => Array
+                                                                                (
+                                                                                    [0] => 
+                                                                                )
+
+                                                                        )
+
+                                                                    [_] => stdClass Object
+                                                                        (
+                                                                            [price_type] => 
+                                                                        )
+
+                                                                )
+
+                                                            [name] => 
+                                                            [value] => סנפלגרינו מוגז לימונים 9₪
+                                                            [price] => 9
+                                                            [section] => 5e08afb28c7402.46721562
+                                                            [section_label] => 
+                                                            [percentcurrenttotal] => 0
+                                                            [currencies] => Array
+                                                                (
+                                                                )
+
+                                                            [price_per_currency] => stdClass Object
+                                                                (
+                                                                    [ILS] => 9
+                                                                )
+
+                                                            [quantity] => 1
+                                                            [multiple] => 1
+                                                            [key] => סנפלגרינו מוגז לימונים 9₪_12
+                                                            [use_images] => 
+                                                            [use_colors] => 
+                                                            [changes_product_image] => 
+                                                            [imagesp] => 
+                                                            [images] => 
+                                                            [color] => 
+                                                        )
+
+                                                )
+
+                                        )
+
+                                    [1] => stdClass Object
+                                        (
+                                            [id] => 85
+                                            [key] => _tm_epo_product_original_price
+                                            [value] => Array
+                                                (
+                                                    [0] => 46
+                                                )
+
+                                        )
+
+                                    [2] => stdClass Object
+                                        (
+                                            [id] => 86
+                                            [key] => _tm_epo
+                                            [value] => Array
+                                                (
+                                                    [0] => 1
+                                                )
+
+                                        )
+
+                                    [3] => stdClass Object
+                                        (
+                                            [id] => 100000
+                                            [key] => 
+                                            [value] => קמח מלא
+                                        )
+
+                                    [4] => stdClass Object
+                                        (
+                                            [id] => 100001
+                                            [key] => 
+                                            [value] => סנפלגרינו מוגז לימונים 9₪ ₪9.00
+                                        )
+
+                                )
+
+                            [sku] => 
+                            [price] => 55
+                        )
+
+                )
+
+            [tax_lines] => Array
+                (
+                )
+
+            [shipping_lines] => Array
+                (
+                )
+
+            [fee_lines] => Array
+                (
+                )
+
+            [coupon_lines] => Array
+                (
+                )
+
+            [refunds] => Array
+                (
+                )
+
+            [currency_symbol] => ₪
+            [_links] => stdClass Object
+                (
+                    [self] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [href] => https://freshit-order.ussl.blog/wp-json/wc/v3/orders/494
+                                )
+
+                        )
+
+                    [collection] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [href] => https://freshit-order.ussl.blog/wp-json/wc/v3/orders
+                                )
+
+                        )
+
+                    [customer] => Array
+                        (
+                            [0] => stdClass Object
+                                (
+                                    [href] => https://freshit-order.ussl.blog/wp-json/wc/v3/customers/1
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
