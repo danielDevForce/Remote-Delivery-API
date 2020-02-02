@@ -184,16 +184,19 @@ class MySettingsPage
         }
         return $options['api_pass'];
     }
+    function test(){
+        echo 'hello';
+    }
 
 }
 
-if( is_admin() )
-{
+// if( is_admin() )
+// {
 
-    $my_settings_page = new MySettingsPage();
-    //echo 'token' . $my_settings_page->get_share_token();
-    //echo 'user' . $my_settings_page->get_api_user();
-    //echo 'password' . $my_settings_page->get_api_pass();
-}
+//     $my_settings_page = new MySettingsPage();
+//     //echo 'token' . $my_settings_page->get_share_token();
+//     //echo 'user' . $my_settings_page->get_api_user();
+//     //echo 'password' . $my_settings_page->get_api_pass();
+// }
 
 ?>
