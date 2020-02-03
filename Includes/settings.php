@@ -184,9 +184,7 @@ class MySettingsPage
         }
         return $options['api_pass'];
     }
-    function test(){
-        echo 'hello';
-    }
+
 
 }
 

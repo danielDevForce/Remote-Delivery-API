@@ -6,9 +6,6 @@ Description: Remote Delivery API
 Author: Devforce
 Version: 1.0.0
 */
-require __DIR__ . '/vendor/autoload.php';
-use Automattic\WooCommerce\HttpClient\HttpClientException;
-use Automattic\WooCommerce\Client;
 
     class RemoteOrder {
         /* Member variables */
@@ -25,7 +22,7 @@ use Automattic\WooCommerce\Client;
         public  $deliveryType;          //0-delivery 1-takeout
         public  $servingType;           //(0- SIT, 1-TA, 2-DELIVERY) not mandatory, default value is 2-DELIVERY
         public  $address;
-        //add payments
+        public  $payment = array();
 
         function __construct($id, $shareToken, $items, $formatCreateDate, $formatDeliveryDate , $status, Contact $contact, Address $address, $deliveryType = 0, $servingType = 2 ) {
             $this->id           = $id;
@@ -134,23 +131,16 @@ use Automattic\WooCommerce\Client;
           }
     }
 
-
     class Payment{
-        public  $paymentMethod;
-        public  $amount; //in agorot
+      
+        public  $type;
+        //public  $amount; //in agorot
         public  $card;
 
-        function __construct($paymentMethod, $amount, CreditCard $card) {
-            $this->paymentMethod =    PaymentMethod:: $paymentMethod;
-            $this->amount          = $amount;
-            $this->card            = $card;
+        function __construct(CreditCard $card, $paymentMethod=1) {
+            $this->card = $card;
+            $this->type = $paymentMethod;
           }
-        
-          public function __toString()
-          {
-              return $this->$paymentMethod;
-          }
-
     }
 
     class CreditCard{
@@ -164,7 +154,7 @@ use Automattic\WooCommerce\Client;
         public  $CVV;
         public  $token;
 
-        public function __construct($number, $expireMonth, $expireYear, $CVV, $token, $holderId="", $holderName="", $billingAddress="", $billingPostalCode="") {
+        public function __construct($number, $expireMonth, $expireYear, $CVV, $token=NULL, $holderId=NULL, $holderName=NULL, $billingAddress=NULL, $billingPostalCode=NULL) {
             $this->number            = $number;
             $this->expireMonth       = $expireMonth;
             $this->expireYear        = $expireYear;
@@ -276,8 +266,8 @@ function get_items_from_order($order)// : Item
 /**
  *  returns an contact object from the order
  * 
- * @param array $items - the items array from the order
- * @param $level - level
+ * @param array $items -> the items array from the order
+ * @param $level -> level
  */
 function get_variations_from_order($items, $level){// : Item
     $temp = array();
@@ -300,13 +290,30 @@ function get_variations_from_order($items, $level){// : Item
         $temp = array();
         $level++;
         array_push($variations,$variation);
-    }
-    //function __construct($id, $desc, $price, $status, $count = 0, $variations= array(), $discountable = false, $type=0) {
-        //new Variation(), //empty variation array
-   // print_r($variations);
+    };
     return $variations;
 }
- 
+/**
+ * creates a payment object and  then returns it
+ * @param $info -> object from the database
+ */
+function create_payment_obj($info){
+    $card = new CreditCard(
+        $info->creditcard_number,
+        $info->creditcard_month,
+        $info->creditcard_year,
+        $info->creditcard_CVV
+    );
+    $payment = new Payment(
+        $card
+    );
+    return $payment;
+}
+/**
+ * creates a Remote Order object and then returns it
+ * @param $order-> order gotten from woocommerce api
+ * @param $shareTpken -> shareToken given by admin
+ */
 function create_Remote_order($order, $shareToken) :RemoteOrder {
     $main = $order[0];
     $address = get_address_from_order($order);
@@ -328,21 +335,22 @@ function create_Remote_order($order, $shareToken) :RemoteOrder {
 
 
 
-$woocommerce = connect_to_woocommerce_api('https://freshit-order.ussl.blog',  'ck_d2bc995ba20f60ebaf241bac002e2699bb90bff7', 'cs_636f8e9f01a63eb072b768c73f92256d3f8ba56d');
-$results = $woocommerce->get('orders');
+//$woocommerce = connect_to_woocommerce_api('https://freshit-order.ussl.blog',  'ck_d2bc995ba20f60ebaf241bac002e2699bb90bff7', 'cs_636f8e9f01a63eb072b768c73f92256d3f8ba56d');
+
+//$results = $woocommerce->get('orders');
 // $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
 // fwrite($myfile, print_r($results, true));
 //get_address_from_order($results);
 //get_contact_from_order($results);
 //$a = get_items_from_order($results);
-$myObj= create_Remote_order($results, "1234");
+//$myObj= create_Remote_order($results, "1234");
 
-$myJSON = json_encode($myObj);
-$result = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $myJSON);
+//$myJSON = json_encode($myObj);
+//$result = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $myJSON);
 //echo $result;
-$myfile = fopen("newfilew.txt", "w") or die("Unable to open file!");
-fwrite($myfile, $result);
-var_dump($myObj->items);
-echo gettype($myObj->items);
+// $myfile = fopen("newfilew.txt", "w") or die("Unable to open file!");
+// fwrite($myfile, $result);
+// var_dump($myObj->items);
+// echo gettype($myObj->items);
 
 

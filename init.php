@@ -9,72 +9,65 @@ Version: 1.0.0
     include(dirname(__FILE__)."/Includes/settings.php");
     include(dirname(__FILE__)."/Includes/payment.php");
     include_once WP_PLUGIN_DIR .'/woocommerce/woocommerce.php';
+    include(dirname(__FILE__)."/Includes/Remote-Delivery-API.php");
+
 
    $my_settings_page = new MySettingsPage();
     if(!empty($_GET['qwe']))
     {
 
-        //echo 'qwe';
-        //echo "<script> consolo.log('qwe') </script>";
         $url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $url = substr($url, 0, strpos($url, "?"));
         global $wpdb,$woocommerce;
-        $results = $wpdb->get_results( "SELECT order_id FROM {$wpdb->prefix}creditCards ");
-        print_r( $results);
-       //echo gettype($wpdb);
-        $order_id = $results[0]->order_id;
-        $myWC = WC();
-        woo_api();
-        // Now you have access to (see above)...
- 
-        //echo $order->get_id();
-        //WC()->get();
-        //$order = wc_get_order( $order_id );
-        //print_r($order);
-        //echo gettype($myWC);
+        $username =  $my_settings_page->get_api_user();
+        $password = $my_settings_page->get_api_pass();
+        $order = woo_api($username, $password, $url);
+
+        $arr = json_decode($order);
+        //print_r($arr);
         
-        //$cart_content = WC()->cart->get_cart();
-       //echo $cart_content;
-        //echo $url;
-        // $woocommerce = new Client(
-        //     $url, // Your store URL
-        //     $my_settings_page->get_api_user(), // Your consumer key
-        //     $my_settings_page->get_api_pass(), // Your consumer secret
-        //     [
-        //         'wp_api' => true, // Enable the WP REST API integration
-        //         'version' => 'wc/v3' // WooCommerce WP REST API version
-        //     ]
-        // );
-        //$results = $woocommerce->get('orders');
-        //print_r($result);
-        // $myObj= create_Remote_order($results, "1234");
-        // $myObj->shareToken = $my_settings_page->get_share_token();
-        // $myJSON = json_encode($myObj);
-        // echo $myJSON;
-        //$myfile = fopen("newfilew.txt", "w") or die("Unable to open file!");
-        //fwrite($myfile, $myJSON);
-        //echo 'token' . 
-        //echo 'user' . 
-        //echo 'password' . 
-    // $my_settings_page->test();
-
-
-
+        $remoteOrder= create_Remote_order($arr, $my_settings_page->get_share_token());
+        array_push($remoteOrder->payment, get_creditCard_fromdb($wpdb,$remoteOrder->id)); 
+        $myJSON = json_encode($remoteOrder);
+        $result = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $myJSON);
+        
+        echo $result;
     }
-    function woo_api(){
-        $username = 'ck_d2bc995ba20f60ebaf241bac002e2699bb90bff7';
-        $password = 'cs_636f8e9f01a63eb072b768c73f92256d3f8ba56d';
-        $host = 'https://freshit-order.ussl.blog/wp-json/wc/v3/orders/';
+    /**
+     * gets the order from the woocommerce API
+     * 
+     * @param $username -> username for the rest api, entered in the setting page.
+     * @param $password -> password for the rest api, entered in the setting page.
+     * @param $host -> the url of the site
+     * @param $order_id -> optinal, gets an order with specific order id from the rest api
+     */
+    function woo_api($username, $password, $host, $order_id=""){
+        $wp_json = 'wp-json/wc/v3/orders/';
+        $host= $host . $wp_json . $order_id;
         $ch = curl_init($host);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/xml', $additionalHeaders));
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
-        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json;', 'charset=utf-8'));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         $return = curl_exec($ch);
-        print_r($return);
+        //print_r($return);
         curl_close($ch);
+        return $return;
+    }
+    /**
+     * gets credit card info from the database
+     * 
+     * @param $wpdb -> global wordpress database object
+     * @param $id -> the order id to search the credit card info by
+     */
+    function get_creditCard_fromdb($wpdb,$id){
+        $results = $wpdb->get_results( "SELECT * 
+                                        FROM {$wpdb->prefix}creditCards  
+                                        WHERE order_id=$id");
+        $payment = create_payment_obj($results[0]);
+        return $payment;
     }
     
 ?>
