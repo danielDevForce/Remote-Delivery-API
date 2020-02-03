@@ -21,11 +21,12 @@ Version: 1.0.0
         global $wpdb,$woocommerce;
         $username =  $my_settings_page->get_api_user();
         $password = $my_settings_page->get_api_pass();
-        $order = woo_api($username, $password, $url);
-
-        $arr = json_decode($order);
+        !empty($_GET['id']) ? $id = $_GET['id'] : $id="";
+        $order = woo_api($username, $password, $url, $id);
+        $arrdecode = json_decode($order);
+        $arr = array();
+        gettype($arrdecode) == 'array' ?   $arr = $arrdecode : array_push($arr, $arrdecode ) ;
         //print_r($arr);
-        
         $remoteOrder= create_Remote_order($arr, $my_settings_page->get_share_token());
         array_push($remoteOrder->payment, get_creditCard_fromdb($wpdb,$remoteOrder->id)); 
         $myJSON = json_encode($remoteOrder);
@@ -39,11 +40,12 @@ Version: 1.0.0
      * @param $username -> username for the rest api, entered in the setting page.
      * @param $password -> password for the rest api, entered in the setting page.
      * @param $host -> the url of the site
-     * @param $order_id -> optinal, gets an order with specific order id from the rest api
+     * @param $sid -> optinal, gets an order with specific order id from the rest api
      */
-    function woo_api($username, $password, $host, $order_id=""){
+    function woo_api($username, $password, $host, $id){
         $wp_json = 'wp-json/wc/v3/orders/';
-        $host= $host . $wp_json . $order_id;
+        $host = $host . $wp_json . $id;
+        //echo $host;
         $ch = curl_init($host);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json;', 'charset=utf-8'));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
@@ -52,7 +54,6 @@ Version: 1.0.0
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         $return = curl_exec($ch);
-        //print_r($return);
         curl_close($ch);
         return $return;
     }
