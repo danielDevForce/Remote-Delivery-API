@@ -9,7 +9,7 @@ Version: 1.0.0
     include(dirname(__FILE__)."/Includes/settings.php");
     include(dirname(__FILE__)."/Includes/payment.php");
     include_once WP_PLUGIN_DIR .'/woocommerce/woocommerce.php';
-    include(dirname(__FILE__)."/Includes/Remote-Delivery-API.php");
+    include(dirname(__FILE__)."/Includes/classes.php");
 
 
    $my_settings_page = new MySettingsPage();
